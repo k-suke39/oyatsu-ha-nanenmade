@@ -1,6 +1,6 @@
 export const metadata = {
-	title: 'おやつは何円まで',
-	description: 'おやつは何円まで',
+	title: 'おやつは何円まで？',
+	description: 'おやつは何円まで？',
 };
 
 export default function RootLayout({

@@ -159,7 +159,7 @@ export default function Page() {
 	const [overBudget, setOverBudget] = useState(false);
 	const [title, setTitle] = useState(false);
 
-	const handleBudgetChange = (event) => {
+	const handleBudgetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const newBudget = parseFloat(event.target.value);
 		setBudget(newBudget);
 

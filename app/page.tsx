@@ -152,8 +152,10 @@ const snacks = [
 export default function Page() {
 	const [budget, setBudget] = useState<number | null>(null);
 	const [remainingBudget, setRemainingBudget] = useState(0);
-	const [affordableSnacks, setAffordableSnacks] = useState<string[]>([]);
-	const [twitterUrl, setTwitterUrl] = useState(null);
+	const [affordableSnacks, setAffordableSnacks] = useState<
+		{ name: string; price: number }[]
+	>([]);
+	const [twitterUrl, setTwitterUrl] = useState<string | null>(null);
 
 	const maxBudget = 300;
 	const [overBudget, setOverBudget] = useState(false);

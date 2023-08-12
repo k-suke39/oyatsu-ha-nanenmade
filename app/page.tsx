@@ -218,7 +218,7 @@ export default function Page() {
 		// シェア時の文字数を考慮するため、7つまでのお菓子を選ぶ
 		const forTweetSnacks = selectedSnacks.slice(0, 7);
 		// おこづかいと選ばれたお菓子の情報をまとめる
-		const snackNames = forTweetSnacks.map((snack) => snack.name).join(', ');
+		const snackNames = forTweetSnacks.map((snack) => snack.name).join('、');
 		// Twitterシェア時のテキストをまとめる
 		const tweetText = `https://twitter.com/intent/tweet?text=今日のおこづかいは${newBudget}円！選んだ駄菓子は${snackNames}あたりだよ！&url=https://oyatsu-ha-nanenmade.vercel.app/`;
 		// TwitterURLをセット

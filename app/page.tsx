@@ -150,9 +150,9 @@ const snacks = [
 ];
 
 export default function Page() {
-	const [budget, setBudget] = useState(null);
+	const [budget, setBudget] = useState<number | null>(null);
 	const [remainingBudget, setRemainingBudget] = useState(0);
-	const [affordableSnacks, setAffordableSnacks] = useState([]);
+	const [affordableSnacks, setAffordableSnacks] = useState<Array | []>([]);
 	const [twitterUrl, setTwitterUrl] = useState(null);
 
 	const maxBudget = 300;
@@ -161,7 +161,7 @@ export default function Page() {
 
 	const handleBudgetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const newBudget = parseFloat(event.target.value);
-		setBudget(newBudget: Number);
+		setBudget(newBudget);
 
 		//301円以上の場合に、お菓子を非表示
 		if (newBudget >= 301) {
@@ -175,7 +175,7 @@ export default function Page() {
 			return;
 		}
 
-		setBudget(newBudget: Number);
+		setBudget(newBudget);
 		setOverBudget(false);
 		setTitle(true);
 		// 予算内でスナックをフィルタリング

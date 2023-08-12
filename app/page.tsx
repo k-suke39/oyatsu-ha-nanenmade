@@ -295,7 +295,12 @@ export default function Page() {
 			</div>
 
 			<div className={`fixed top-0 left-0 w-full h-screen z-[-1]`}>
-				<Image src="/dagashi.jpg" layout={`fill`} objectFit={`cover`} />
+				<Image
+					src="/dagashi.jpg"
+					alt="駄菓子屋"
+					layout={`fill`}
+					objectFit={`cover`}
+				/>
 			</div>
 		</div>
 	);

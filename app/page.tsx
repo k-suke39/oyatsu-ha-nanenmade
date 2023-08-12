@@ -259,7 +259,7 @@ export default function Page() {
 							href={twitterUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex justify-center items-center m"
+							className="flex justify-center items-center mb-3"
 						>
 							{' '}
 							<svg

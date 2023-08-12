@@ -211,8 +211,6 @@ export default function Page() {
 			}
 		}
 
-		console.log(selectedSnacks);
-
 		setAffordableSnacks(selectedSnacks);
 
 		// シェア時の文字数を考慮するため、7つまでのお菓子を選ぶ

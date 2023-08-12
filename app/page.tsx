@@ -169,6 +169,7 @@ export default function Page() {
 		if (newBudget >= 301) {
 			setAffordableSnacks([]);
 			setOverBudget(true);
+			setTitle(false);
 		}
 
 		//予算が501円以上の時、表記を変更する
@@ -231,7 +232,7 @@ export default function Page() {
 					href="#"
 					className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
 				>
-					<h5 className="mb-2 text-2xl font-bold  text-gray-900 dark:text-white">
+					<h5 className="mb-5 text-2xl font-bold  text-gray-900 dark:text-white">
 						今日のおやつは何円まで？
 					</h5>
 					<input
@@ -243,7 +244,7 @@ export default function Page() {
 						required
 					></input>
 				</a>
-				<div>
+				<div className="flex justify-center items-center flex-col">
 					{overBudget && (
 						<h5 className="mt-4 mb-2 text-7xl font-bold tracking-tight text-red-500 dark:text-white">
 							お母さん『そんなに渡していません！』

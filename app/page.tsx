@@ -161,7 +161,7 @@ export default function Page() {
 
 	const handleBudgetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const newBudget = parseFloat(event.target.value);
-		setBudget(newBudget: Integer);
+		setBudget(newBudget: Number);
 
 		//301円以上の場合に、お菓子を非表示
 		if (newBudget >= 301) {
@@ -175,7 +175,7 @@ export default function Page() {
 			return;
 		}
 
-		setBudget(newBudget);
+		setBudget(newBudget: Number);
 		setOverBudget(false);
 		setTitle(true);
 		// 予算内でスナックをフィルタリング

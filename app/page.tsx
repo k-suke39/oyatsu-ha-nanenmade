@@ -273,9 +273,9 @@ export default function Page() {
 						</a>
 					)}
 					<ul className="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
-						{affordableSnacks.map((snack) => (
+						{affordableSnacks.map((snack, index) => (
 							<li
-								key={snack.id}
+								key={index}
 								className="flex items-center text-gray-800 text-2xl font-bold"
 							>
 								<svg

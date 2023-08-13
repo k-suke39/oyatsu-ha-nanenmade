@@ -221,7 +221,7 @@ export default function Page() {
 		// おこづかいと選ばれたお菓子の情報をまとめる
 		const snackNames = forTweetSnacks.map((snack) => snack.name).join('、');
 		// Twitterシェア時のテキストをまとめる
-		const tweetText = `https://twitter.com/intent/tweet?text=今日のおこづかいは${newBudget}円！選んだ駄菓子は${snackNames}あたりだよ！&url=https://oyatsu-ha-nanenmade.vercel.app/`;
+		const tweetText = `https://twitter.com/intent/tweet?text=今日のおこづかいは${newBudget}円！選んだ駄菓子は${snackNames}だよ！&url=https://oyatsu-ha-nanenmade.vercel.app/`;
 		// TwitterURLをセット
 		setTwitterUrl(tweetText);
 	};

@@ -166,62 +166,72 @@ export default function Page() {
 		setBudget(newBudget);
 
 		//301円以上の場合に、お菓子を非表示
-		if (newBudget >= 301) {
-			setAffordableSnacks([]);
-			setOverBudget(true);
-			setTitle(false);
-		}
+		const handleBudgetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+			const newBudget = parseFloat(event.target.value);
+			setBudget(newBudget);
 
-		//予算が501円以上の時、表記を変更する
-		if (newBudget > maxBudget) {
-			setOverBudget(true);
-			return;
-		}
+			if (newBudget >= 301) {
+				setAffordableSnacks([]);
+				setOverBudget(true);
+				setTitle(false);
+			} else if (newBudget > maxBudget) {
+				setOverBudget(true);
+			} else {
+				setOverBudget(false);
+			}
+		};
+
+		const selectSnacks = (snacks, budget) => {
+			let selectedSnacks = [];
+			let snackBudget = budget;
+			for (let snack of snacks) {
+				if (snack.price <= snackBudget) {
+					selectedSnacks.push(snack);
+					snackBudget -= snack.price;
+				} else {
+					break;
+				}
+			}
+			return { selectedSnacks, remainingBudget: snackBudget };
+		};
 
 		setBudget(newBudget);
 		setOverBudget(false);
 		setTitle(true);
+
 		// 予算内でスナックをフィルタリング
 		const affordableSnacks = snacks.filter((snack) => snack.price <= newBudget);
 		console.log(affordableSnacks);
+
 		// フィルタリングしたスナックをシャッフル
 		const shuffledSnacks = affordableSnacks.sort(() => Math.random() - 0.5);
 
-		let snackBudget = newBudget;
-		let selectedSnacks = [];
-		let remainingBudget = snackBudget;
-
-		for (let snack of shuffledSnacks) {
-			if (snack.price <= snackBudget) {
-				selectedSnacks.push(snack);
-				snackBudget -= snack.price;
-			} else {
-				remainingBudget = snackBudget;
-				break;
-			}
-		}
+		let { selectedSnacks, remainingBudget } = selectSnacks(
+			shuffledSnacks,
+			newBudget
+		);
 
 		const remainingAffordableSnacks = affordableSnacks.filter(
 			(snack) => snack.price <= remainingBudget
 		);
 
-		for (let snack of remainingAffordableSnacks) {
-			if (snack.price <= remainingBudget) {
-				selectedSnacks.push(snack);
-				remainingBudget -= snack.price;
-			} else {
-				break;
-			}
-		}
+		let { selectedSnacks: moreSnacks } = selectSnacks(
+			remainingAffordableSnacks,
+			remainingBudget
+		);
+		selectedSnacks = [...selectedSnacks, ...moreSnacks];
 
 		setAffordableSnacks(selectedSnacks);
 
 		// シェア時の文字数を考慮するため、7つまでのお菓子を選ぶ
 		const forTweetSnacks = selectedSnacks.slice(0, 7);
+
 		// おこづかいと選ばれたお菓子の情報をまとめる
 		const snackNames = forTweetSnacks.map((snack) => snack.name).join('、');
+
 		// Twitterシェア時のテキストをまとめる
 		const tweetText = `https://twitter.com/intent/tweet?text=今日のおこづかいは${newBudget}円！選んだ駄菓子は${snackNames}だよ！&url=https://oyatsu-ha-nanenmade.vercel.app/`;
+
 		// TwitterURLをセット
 		setTwitterUrl(tweetText);
 	};

@@ -2,7 +2,7 @@
 
 import '@/styles/globals.css';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const snacks = [
 	{ id: 1, name: 'うまい棒 のり塩味', price: 12 },
@@ -149,6 +149,22 @@ const snacks = [
 	{ id: 142, name: 'うまい棒 チーズ味', price: 12 },
 ];
 
+const messages = [
+	'お母さん『そんなに渡していません！』',
+	'お母さん『今日はもう十分です！』',
+	'お母さん『アカン、お父さんの悪いとこだけ似とるわ！』',
+	'お母さん『勉強しいや！』',
+	'お母さん『怒るで。』',
+	'お母さん『じゃあお母さんがアンタが駄菓子買いきるまで働けばいいってこと？』',
+	'お母さん『いつもありがとう』',
+	'お父さん『母ちゃんには黙っておこうな』',
+	'お父さん『俺に似たな〜』',
+	'お父さん『自慢の息子だ』',
+	'お父さん『俺に構うな、早くいけぇ』',
+	'駄菓子屋『坊主、人生は冒険や』',
+	'駄菓子はいいぞおじさん『駄菓子はいいぞ』',
+];
+
 export default function Page() {
 	const [budget, setBudget] = useState<number | null>(null);
 	const [remainingBudget, setRemainingBudget] = useState(0);
@@ -161,6 +177,8 @@ export default function Page() {
 	const [overBudget, setOverBudget] = useState(false);
 	const [title, setTitle] = useState(false);
 
+	const [message, setMessage] = useState('');
+
 	const handleBudgetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const newBudget = parseFloat(event.target.value);
 		setBudget(newBudget);
@@ -172,7 +190,7 @@ export default function Page() {
 			setTitle(false);
 		}
 
-		//予算が501円以上の時、表記を変更する
+		//予算が301円以上の時、表記を変更する
 		if (newBudget > maxBudget) {
 			setOverBudget(true);
 			return;
@@ -225,6 +243,12 @@ export default function Page() {
 		// TwitterURLをセット
 		setTwitterUrl(tweetText);
 	};
+
+	useEffect(() => {
+		const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+		setMessage(randomMessage);
+	}, [budget]);
+
 	return (
 		<div>
 			<div className="flex justify-center items-center flex-col h-screen">
@@ -247,7 +271,7 @@ export default function Page() {
 				<div className="flex justify-center items-center flex-col">
 					{overBudget && (
 						<h5 className="mt-4 mb-2 text-7xl font-bold tracking-tight text-red-500 dark:text-white">
-							お母さん『そんなに渡していません！』
+							{message}
 						</h5>
 					)}
 					{title && overBudget == false && (

@@ -181,7 +181,7 @@ export default function Page() {
 			}
 		};
 
-		const selectSnacks = (snacks, budget) => {
+		const selectSnacks = (snacks: any, budget: any) => {
 			let selectedSnacks = [];
 			let snackBudget = budget;
 			for (let snack of snacks) {

@@ -178,7 +178,14 @@ export default function Page() {
 
 	const [message, setMessage] = useState('');
 
+	const [startTime, setStartTime] = useState(Date.now());
+	const [endTime, setEndTime] = useState<number>(0);
+	const [showLink, setShowLink] = useState(false);
+
 	const handleBudgetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		//RTA機能を初期化
+		setEndTime(0);
+		setShowLink(false);
 		const newBudget = parseFloat(event.target.value);
 		setBudget(newBudget);
 
@@ -246,6 +253,15 @@ export default function Page() {
 	useEffect(() => {
 		const randomMessage = messages[Math.floor(Math.random() * messages.length)];
 		setMessage(randomMessage);
+
+		if (
+			randomMessage ===
+				'ヒステリック母さん『じゃあお母さんはアンタが駄菓子買いきるまで働けばいいってこと？』' &&
+			endTime === 0
+		) {
+			setEndTime(Date.now());
+			setShowLink(true);
+		}
 	}, [budget]);
 
 	return (
@@ -267,12 +283,36 @@ export default function Page() {
 						required
 					></input>
 				</a>
-				<div className="flex justify-center items-center flex-col">
+				<div className="flex justify-center items-center flex-col mt-3">
+					{showLink && (
+						<a
+							href={`https://twitter.com/intent/tweet?text=お母さんがヒステリックになるまで${(
+								(endTime - startTime) /
+								1000
+							).toFixed(
+								1
+							)}秒かかりました。母ちゃんごめん！&url=https://oyatsu-ha-nanenmade.vercel.app/`}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="flex justify-center items-center mb-3"
+						>
+							{' '}
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								className="h-7 w-7 4xl"
+								fill="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+							</svg>
+						</a>
+					)}
 					{overBudget && (
 						<h5 className="mt-4 mb-2 text-7xl font-bold tracking-tight text-red-500 dark:text-white">
 							{message}
 						</h5>
 					)}
+
 					{title && overBudget == false && (
 						<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white mt-2">
 							今日の駄菓子はこれ！

@@ -155,7 +155,6 @@ const messages = [
 	'お母さん『アカン、お父さんの悪いとこだけ似とるわ！』',
 	'お母さん『勉強しいや！』',
 	'お母さん『怒るで。』',
-	'ヒステリック母さん『じゃあお母さんはアンタが駄菓子買いきるまで働けばいいってこと？！』',
 	'お父さん『母ちゃんには黙っておこうな』',
 	'お父さん『俺に似たな〜』',
 	'お父さん『自慢の息子だ』',
@@ -251,7 +250,16 @@ export default function Page() {
 	};
 
 	useEffect(() => {
-		const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+		let messagePool = [...messages];
+
+		if (budget >= 100000) {
+			messagePool.push(
+				'ヒステリック母さん『じゃあお母さんはアンタが駄菓子買いきるまで働けばいいってこと？！』'
+			);
+		}
+
+		const randomMessage =
+			messagePool[Math.floor(Math.random() * messagePool.length)];
 		setMessage(randomMessage);
 
 		if (

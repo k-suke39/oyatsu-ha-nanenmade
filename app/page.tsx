@@ -286,7 +286,7 @@ export default function Page() {
 				<div className="flex justify-center items-center flex-col mt-3">
 					{showLink && (
 						<a
-							href={`https://twitter.com/intent/tweet?text=お母さんがヒステリックになるまで${(
+							href={`https://twitter.com/intent/tweet?text=お母さんがお怒りになるまで${(
 								(endTime - startTime) /
 								1000
 							).toFixed(

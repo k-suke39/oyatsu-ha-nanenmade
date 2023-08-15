@@ -155,7 +155,7 @@ const messages = [
 	'お母さん『アカン、お父さんの悪いとこだけ似とるわ！』',
 	'お母さん『勉強しいや！』',
 	'お母さん『怒るで。』',
-	'ヒステリック母さん『じゃあお母さんはアンタが駄菓子買いきるまで働けばいいってこと？!』',
+	'ヒステリック母さん『じゃあお母さんはアンタが駄菓子買いきるまで働けばいいってこと？！』',
 	'お父さん『母ちゃんには黙っておこうな』',
 	'お父さん『俺に似たな〜』',
 	'お父さん『自慢の息子だ』',
@@ -256,7 +256,7 @@ export default function Page() {
 
 		if (
 			randomMessage ===
-				'ヒステリック母さん『じゃあお母さんはアンタが駄菓子買いきるまで働けばいいってこと？』' &&
+				'ヒステリック母さん『じゃあお母さんはアンタが駄菓子買いきるまで働けばいいってこと？！』' &&
 			endTime === 0
 		) {
 			setEndTime(Date.now());
@@ -286,7 +286,7 @@ export default function Page() {
 				<div className="flex justify-center items-center flex-col mt-3">
 					{showLink && (
 						<a
-							href={`https://twitter.com/intent/tweet?text=お母さんがになるまで${(
+							href={`https://twitter.com/intent/tweet?text=お母さんがお怒りになるまで${(
 								(endTime - startTime) /
 								1000
 							).toFixed(

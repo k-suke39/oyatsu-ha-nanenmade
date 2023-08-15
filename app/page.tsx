@@ -252,7 +252,7 @@ export default function Page() {
 	useEffect(() => {
 		let messagePool = [...messages];
 
-		if (budget >= 100000) {
+		if (budget && budget >= 100000) {
 			messagePool.push(
 				'ヒステリック母さん『じゃあお母さんはアンタが駄菓子買いきるまで働けばいいってこと？！』'
 			);
